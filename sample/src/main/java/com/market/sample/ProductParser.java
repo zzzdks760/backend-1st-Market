@@ -6,28 +6,35 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.market.sample.model.Product;
+import com.market.sample.service.Order;
 
 public class ProductParser {
-
-	private static final String RESOURCES = "src/main/resources/";
 	
-	public void analyze(final String fileName) {
+	private static final String RESOURCES = "src/main/resources/";
+
+	public void analyze(String fileName, String month) {
 		final Path path = Paths.get(RESOURCES + fileName);
-		System.out.println(path);
 		ProductCSVParser csvParser = new ProductCSVParser();
 		
 		try {
 			Charset cs = StandardCharsets.UTF_8;
 			List<String> lines = Files.readAllLines(path, cs);
 			List<Product> products = csvParser.parseLinesFrom(lines);
+			
+			Order order = new Order(products);
+			
+			//월별 조회 메서드
+			order.calculateTotalInMonth(month);
+			//브랜드 상위 10위
+			order.top10Brand();
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		// 1. 첫 번째 관심사 - 주어진 입출금 내역 파일 읽기
 //		List<String> lines = new ArrayList<>();
 		
@@ -52,6 +59,5 @@ public class ProductParser {
 //		}
 
 		// 1.월별 수익
-		
 		}
 }

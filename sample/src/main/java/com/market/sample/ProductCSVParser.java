@@ -1,6 +1,6 @@
 package com.market.sample;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class ProductCSVParser {
 		public Product parseFrom(final String line) {
 			String[] columns = line.split(",");
 			
-			LocalDate date = LocalDate.parse(columns[0], DATE_PATTERN);
+			LocalDateTime date = LocalDateTime.parse(columns[0], DATE_PATTERN);
 			String item = columns[1];
 			String brand = columns[2];
 			int quantity = Integer.parseInt(columns[3]);
