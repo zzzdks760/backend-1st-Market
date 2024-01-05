@@ -1,5 +1,8 @@
 package com.market.sample.service;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,15 +13,16 @@ import com.market.sample.model.Product;
 public class Order {
 	private List<Product> products;
 	private final String[] MONTHS = {"JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"};
-
+	
+	static String month;
 	
 	public Order(List<Product> products) {
 		this.products = products;
 	}
 	
 	// 입력 검증
-	public boolean validateInput(String month) {
-		month = month.toUpperCase();
+	public boolean validateInput(String inputMonth) {
+		month = inputMonth.toUpperCase();
 		for (String s : MONTHS) {
 			if (month.equals(s)) {
 				return true;
@@ -28,22 +32,23 @@ public class Order {
 	}
 	
 	// 월을 입력받아서 월별 수익 조회
-	public void calculateTotalInMonth(String month) {
+	public void calculateTotalInMonth() throws IOException {
 	    double total = 0d;
 	    double per = 0d;
 	    double goal = 1000000;
-
-	    if (!validateInput(month)) {
+	    
+	    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("수익을 조회할 달을 입력하세요");
+		String inputMonth = br.readLine();
+	    
+	    if (!validateInput(inputMonth)) {
 	    	System.out.println("입력값이 유효하지 않습니다.");
             System.exit(0); 
 	    }
 
-	    for (Product product : products) {
+	    for (Product product : products) {	    	
 	        if (product.getDate().getMonth().toString().equals(month)) {
 	            total += product.getPrice() * product.getQuantity();
-	        } else {
-	        	System.out.println("정확히 입력해주세요.");
-	        	return;
 	        }
 	    }
 	    

@@ -16,7 +16,7 @@ public class ProductParser {
 	
 	private static final String RESOURCES = "src/main/resources/";
 
-	public void analyze(String fileName, String month) {
+	public void analyze(String fileName) {
 		final Path path = Paths.get(RESOURCES + fileName);
 		ProductCSVParser csvParser = new ProductCSVParser();
 		
@@ -28,8 +28,9 @@ public class ProductParser {
 			Order order = new Order(products);
 			
 			//월별 조회 메서드
-			order.validateInput(month);
-			order.calculateTotalInMonth(month);
+			//order.validateInput(month);
+			
+			order.calculateTotalInMonth();
 			//브랜드 상위 10위
 			order.top10Brand();
 			
