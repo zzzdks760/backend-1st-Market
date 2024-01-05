@@ -23,6 +23,9 @@ public class Order {
 	    for (Product product : products) {
 	        if (product.getDate().getMonth().toString().equals(month)) {
 	            total += product.getPrice() * product.getQuantity();
+	        } else {
+	        	System.out.println("정확히 입력해주세요.");
+	        	return;
 	        }
 	    }
 	    
