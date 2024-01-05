@@ -28,6 +28,7 @@ public class ProductParser {
 			Order order = new Order(products);
 			
 			//월별 조회 메서드
+			order.validateInput(month);
 			order.calculateTotalInMonth(month);
 			//브랜드 상위 10위
 			order.top10Brand();
