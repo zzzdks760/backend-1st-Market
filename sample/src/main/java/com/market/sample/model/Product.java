@@ -1,15 +1,15 @@
 package com.market.sample.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Product {
-	private LocalDate date;
+	private LocalDateTime date;
 	private String item ;
 	private String brand ;
 	private int quantity;
 	private int price;
 	
-	public Product(LocalDate date, String item, String brand, int quantity, int price) {
+	public Product(LocalDateTime date, String item, String brand, int quantity, int price) {
 		this.date = date;
 		this.item = item;
 		this.brand = brand;
@@ -17,7 +17,7 @@ public class Product {
 		this.price = price;
 	}
 
-	public LocalDate getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 
