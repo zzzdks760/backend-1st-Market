@@ -9,9 +9,20 @@ import com.market.sample.model.Product;
 
 public class Order {
 	private List<Product> products;
+	private final String MONTHS = "JANUARY FEBRUARY MARCH APRIL MAY JUNE JULY AUGUST SEPTEMBER OCTOBER NOVEMBER DECEMBER";
 	
 	public Order(List<Product> products) {
 		this.products = products;
+	}
+	
+	// 입력 검증
+	public boolean validateInput(String month) {
+		month = month.toUpperCase();
+		if (MONTHS.contains(month)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	// 월을 입력받아서 월별 수익 조회
@@ -23,9 +34,6 @@ public class Order {
 	    for (Product product : products) {
 	        if (product.getDate().getMonth().toString().equals(month)) {
 	            total += product.getPrice() * product.getQuantity();
-	        } else {
-	        	System.out.println("정확히 입력해주세요.");
-	        	return;
 	        }
 	    }
 	    
