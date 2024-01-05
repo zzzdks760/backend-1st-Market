@@ -21,7 +21,7 @@ public class OrderTime {
 		this.products = products;
 	}
 	
-	public void Per4Hour() {
+	public void per4Hours() {
 		//빈도수 입력
 		for (Product product : products) {
 			int hour = product.getDate().getHour();
@@ -44,7 +44,7 @@ public class OrderTime {
 				time[0]++;
 			}
 		}
-		
+		System.out.println("4시간 단위의 주문량 정보입니다: ");
 		for (int i = 0; i<6; i++) {
 			System.out.println(i*4+"부터 "+(i+1)*4+"시 까지의 주문량은 "+time[i]+"입니다.");
 		}
