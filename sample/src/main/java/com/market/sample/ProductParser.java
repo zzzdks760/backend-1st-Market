@@ -23,7 +23,7 @@ public class ProductParser {
 		List<String> lines = new ArrayList<>();
 		
 			
-		try (InputStream inputStream = MainApplication.class.getResourceAsStream(RESOURCES + fileName);
+		try (InputStream inputStream = MainApplication.class.getResourceAsStream("/" + fileName);
 				BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
 			String line;
 			while                                  
