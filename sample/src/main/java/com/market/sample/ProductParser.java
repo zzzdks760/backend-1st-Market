@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class ProductParser {
 		
 			
 		try (InputStream inputStream = MainApplication.class.getResourceAsStream("/" + fileName);
-				BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+				BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
 			String line;
 			while                                  
 				((line = reader.readLine()) != null) {
@@ -39,6 +40,7 @@ public class ProductParser {
 			//order.validateInput(month);
 			
 			order.calculateTotalInMonth();
+			System.out.println();
 			//브랜드 상위 10위
 			order.top10Brand();
 			

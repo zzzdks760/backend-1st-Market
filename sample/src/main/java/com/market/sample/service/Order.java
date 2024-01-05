@@ -38,7 +38,7 @@ public class Order {
 	    double goal = 1000000;
 	    
 	    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("수익을 조회할 달을 입력하세요");
+		System.out.println("수익을 조회할 달을 영어로 입력하세요");
 		String inputMonth = br.readLine();
 	    
 	    if (!validateInput(inputMonth)) {
@@ -72,6 +72,8 @@ public class Order {
 		
 		List<String> list = new ArrayList<>(map.keySet());
 		list.sort((o1, o2) -> map.get(o2).compareTo(map.get(o1)));
+		
+		System.out.println("2023년 브랜드 총 수익금 TOP10");
 		
 		for (int i = 0; i < 10; i++) {
 			System.out.println(i+1 +"등: " + list.get(i) + " " + map.get(list.get(i)) + "원");
