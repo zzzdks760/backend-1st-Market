@@ -49,8 +49,8 @@ public class ProductParser {
 			OrderTime ordertime = new OrderTime(products);
 			ordertime.per4Hours();
 			
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("실행 파일을 정확히 입력해 주세요.");
 		}
 
 	}
