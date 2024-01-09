@@ -12,7 +12,7 @@ import com.market.sample.model.Product;
 
 public class Order {
 	private List<Product> products;
-	private final String[] MONTHS = {"JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"};
+	//private final String[] MONTHS = {"JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"};
 	
 	static String month;
 	
@@ -23,7 +23,7 @@ public class Order {
 	// 입력 검증
 	public boolean validateInput(String inputMonth) {
 		month = inputMonth.toUpperCase();
-		for (String s : MONTHS) {
+		for (Months s : Months.values()) {
 			if (month.equals(s)) {
 				return true;
 			}
