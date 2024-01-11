@@ -9,12 +9,47 @@ public class Product {
 	private int quantity;
 	private int price;
 	
-	public Product(LocalDateTime date, String item, String brand, int quantity, int price) {
-		this.date = date;
-		this.item = item;
-		this.brand = brand;
-		this.quantity = quantity;
-		this.price = price;
+	public static class Builder {
+		private LocalDateTime date;
+		private String item ;
+		private String brand ;
+		private int quantity;
+		private int price;
+		
+		public Builder() {}
+		
+		public Builder date(LocalDateTime date) {
+			this.date = date;
+			return this;
+		}
+		public Builder item(String item) {
+			this.item = item;
+			return this;
+		}
+		public Builder brand(String brand) {
+			this.brand = brand;
+			return this;
+		}
+		public Builder quantity(int quantity) {
+			this.quantity = quantity;
+			return this;
+		}
+		public Builder price(int price) {
+			this.price = price;
+			return this;
+		}
+		
+		public Product build() {
+			return new Product(this);
+		}
+	}
+	
+	public Product(Builder builder) {
+		this.date = builder.date;
+		this.item = builder.item;
+		this.brand = builder.brand;
+		this.quantity = builder.quantity;
+		this.price = builder.price;
 	}
 
 	public LocalDateTime getDate() {

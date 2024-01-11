@@ -16,10 +16,10 @@ import com.market.sample.service.OrderTime;
 
 public class ProductParser {
 	
-	private static final String RESOURCES = "/resources/";
+//	private static final String RESOURCES = "/resources/";
 
 	public void analyze(final String fileName) {
-		final Path path = Paths.get(RESOURCES + fileName);
+//		final Path path = Paths.get(RESOURCES + fileName);
 		ProductCSVParser csvParser = new ProductCSVParser();
 		List<String> lines = new ArrayList<>();
 		
@@ -32,22 +32,35 @@ public class ProductParser {
 				lines.add(line);
 			}
 			
-					
+			
 			List<Product> products = csvParser.parseLinesFrom(lines);
 			Order order = new Order(products);
 			
-			//월별 조회 메서드
-			//order.validateInput(month);
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			System.out.println("수익을 조회할 달을 영어로 입력하세요");
+			String inputMonth = br.readLine();
+			inputMonth = inputMonth.toUpperCase();
 			
-			order.calculateTotalInMonth();
+			order.calculateTotalInMonth(inputMonth);
 			System.out.println();
+		
 			//브랜드 상위 10위
 			order.top10Brand();
 			
 			System.out.println();
 			//차트 호출
-			OrderTime ordertime = new OrderTime(products);
-			ordertime.per4Hours();
+			
+			System.out.println("차트를 확인하시겠습니까?(Y/N)");
+			String isTrue = br.readLine();
+			isTrue = isTrue.toUpperCase();
+			
+			if (isTrue.equals("Y")) {
+				OrderTime ordertime = new OrderTime(products);
+				ordertime.per4Hours();
+			} else {
+				System.out.println("프로그램 종료.");
+			}
+			
 			
 		} catch (Exception e) {
 			System.out.println("실행 파일을 정확히 입력해 주세요.");

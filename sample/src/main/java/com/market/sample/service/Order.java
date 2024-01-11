@@ -1,8 +1,5 @@
 package com.market.sample.service;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,9 +19,9 @@ public class Order {
 	
 	// 입력 검증
 	public boolean validateInput(String inputMonth) {
-		month = inputMonth.toUpperCase();
+		System.out.println(inputMonth);
 		for (Months s : Months.values()) {
-			if (month.equals(s)) {
+			if (inputMonth.equals(s.name())) {
 				return true;
 			}
 		}
@@ -32,14 +29,10 @@ public class Order {
 	}
 	
 	// 월을 입력받아서 월별 수익 조회
-	public void calculateTotalInMonth() throws IOException {
+	public void calculateTotalInMonth(String inputMonth) {
 	    double total = 0d;
 	    double per = 0d;
 	    double goal = 1000000;
-	    
-	    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("수익을 조회할 달을 영어로 입력하세요");
-		String inputMonth = br.readLine();
 	    
 	    if (!validateInput(inputMonth)) {
 	    	System.out.println("입력값이 유효하지 않습니다.");
